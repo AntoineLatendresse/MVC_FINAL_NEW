@@ -4,6 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
+using MVC_TP_FINAL.Models;
+// ?
+//using test.Models;
+
+
 namespace test.Controllers
 {
     public class HomeController : Controller
@@ -24,27 +30,25 @@ namespace test.Controllers
         }
 
         [HttpPost]
-        public ActionResult Subscribe(string prenom,
+        public ActionResult Subscribe(
+            string userName,
+            string prenom,
             string nom,
             string telephone,
-            string codePostal,
-            DateTime dateNaissance,
+            string dateNaissance,
             int sexe,
-            int etatCivil,
+            int civil,
             string pathPicture)
         {
             Session["insertionValide"] = false;
 
-
-
-
+            Users member = new Users((String)Session["MainDB"]);
+            
 
             if (Session["insertionValide"].Equals(true))
             {
                 return Redirect("/Home/Index");
             }
-
-
             return View();
         }
 

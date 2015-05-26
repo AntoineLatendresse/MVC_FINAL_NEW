@@ -11,43 +11,42 @@ namespace MVC_TP_FINAL.Models
     {
         public int ID { get; set; }
 
-        [Display(Name = "Adresse email")]
-        [Required(ErrorMessage = "L'adresse email est nécessaire à la création d'un compte.")]
-        [EmailAddress(ErrorMessage = "L'adresse email entrée n'est pas une adresse valide.")]
+        //[Display(Name = "Adresse email")]
+        //[Required(ErrorMessage = "L'adresse email est nécessaire à la création d'un compte.")]
+        //[EmailAddress(ErrorMessage = "L'adresse email entrée n'est pas une adresse valide.")]
         public string Email { get; set; }
 
-        [Display(Name = "Nom d'utilisateur")]
-        [Required(ErrorMessage = "Vous devez avoir un nom d'utilisateur.")]
-        [StringLength(20, MinimumLength = 2)]
+        //[Display(Name = "Nom d'utilisateur")]
+        //[Required(ErrorMessage = "Vous devez avoir un nom d'utilisateur.")]
+        //[StringLength(20, MinimumLength = 2)]
         public string UserName { get; set; }
 
-        [Display(Name = "Mot de passe")]
-        [Required(ErrorMessage = "Vous devez avoir mot de passe")]
-        [StringLength(30, MinimumLength = 8)]
+        //[Display(Name = "Mot de passe")]
+        //[Required(ErrorMessage = "Vous devez avoir mot de passe")]
+        //[StringLength(30, MinimumLength = 8)]
         public string Password { get; set; }
 
-        [Display(Name = "Prenom")]
-        [Required(ErrorMessage = "Le prenom est obligatoire")]
-        [StringLength(20, MinimumLength = 2)]
+        //[Display(Name = "Prenom")]
+        //[Required(ErrorMessage = "Le prenom est obligatoire")]
+        //[StringLength(20, MinimumLength = 2)]
         public string Prenom { get; set; }
 
-        [Display(Name = "Nom")]
-        [Required(ErrorMessage = "Le nom est obligatoire")]
-        [StringLength(20, MinimumLength = 2)]
+        //[Display(Name = "Nom")]
+        //[StringLength(20)]
         public string Nom { get; set; }
 
-        [Display(Name = "Numéro de téléphone")]
-        [StringLength(20, MinimumLength = 2)]
+        //[Display(Name = "Numéro de téléphone")]
+        //[StringLength(20, MinimumLength = 10)]
         public string Telephone { get; set; }
 
-        [Display(Name = "Date de naissance")]
-        [DataType(DataType.Date, ErrorMessage = "Pas une date valide")]
+        //[Display(Name = "Date de naissance")]
+        //[DataType(DataType.Date, ErrorMessage = "Pas une date valide")]
         public DateTime Naissance { get; set; }
 
-
+        
         public int Sexe { get; set; }
 
-        [Display(Name = "État Civil")]
+        //[Display(Name = "État Civil")]
         public int EtatCivil { get; set; }
 
 
