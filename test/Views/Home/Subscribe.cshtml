@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Subscribe";
+}
+
+<h2>Subscribe</h2>
+
+<style>
+    .radio_buttons tr:nth-child(odd) td {
+        background-color: #EEEEEE;
+    }
+
+    .radio_buttons tr:nth-child(even) td {
+        background-color: #DDDDDD;
+    }
+
+    tr td:first-child {
+        text-align: right;
+        vertical-align: top;
+    }
+
+    td {
+        padding: 5px;
+    }
+</style>
+<br />
+<br />
+<table>
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <td>Username: </td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Password: </td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Prénom: </td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Nom: </td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Téléphone: </td>
+                    <td><input type="tel" /></td>
+                </tr>
+                <tr>
+                    <td>Code postal: </td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Naissance: </td>
+                    <td><input style="width:174px;" type="date" /></td>
+                </tr>
+                <tr>
+                    <td>Sexe: </td>
+                    <td>
+                        <table class="radio_buttons">
+                            <tr><td style="text-align:left; padding:0px;"><input type="radio" name="sexe" value="0" />masculin</td></tr>
+                            <tr><td style="text-align: left; padding: 0px;"><input type="radio" name="sexe" value="1" />feminin</td></tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>État civil: </td>
+                    <td>
+                        <table class="radio_buttons">
+                            <tr><td style="text-align:left; padding:0px;"><input type="radio" name="civil" value="0" />célibataire</td></tr>
+                            <tr><td style="text-align: left; padding: 0px;"><input type="radio" name="civil" value="1" />marié</td></tr>
+                            <tr><td style="text-align: left; padding: 0px;"><input type="radio" name="civil" value="2" />conjoint de fait</td></tr>
+                            <tr><td style="text-align: left; padding: 0px;"><input type="radio" name="civil" value="3" />séparé</td></tr>
+                            <tr><td style="text-align: left; padding: 0px;"><input type="radio" name="civil" value="4" />veuf</td></tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="text-align:left;"><input type="submit" value="Ajouter..." /></td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <img id="Image" src="/Images/anonymous.jpg" style="width:240px; height:180px" /><br />
+            <input id="Image_path" onchange="preload(this)" type="file" />
+        </td>
+    </tr>
+</table>

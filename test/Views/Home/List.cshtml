@@ -1,0 +1,56 @@
+﻿@model test.Models.Users
+@{
+    ViewBag.Title = "Lister";
+}
+
+<style>
+    td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    span {
+        border-radius: 25px;
+        border: 2px solid black;
+        padding: 4px;
+        background-color: lightgreen;
+        font-family: monospace;
+    }
+
+    img:hover {
+        border: 2px solid black;
+    }
+
+    img {
+        padding: 2px;
+        width: 200px;
+        height: 200px;
+    }
+</style>
+
+<h2>Lister</h2>
+
+<script type="text/javascript">
+    function BorderDown(img) {
+        img.style.width = "150px";
+        img.style.height = "170px";
+    }
+    function BorderUp(img) {
+        img.style.width = "170px";
+        img.style.height = "190px";
+    }
+</script>
+
+<table>
+    <tr>
+        @while (Model.Next())
+        {
+            <td><img alt=@Model.Id src=@Model.GetAvatarURL() onmousedown="BorderDown(this)" onmouseup="BorderUp(this)" /><br /><span>@Model.Prenom @Model.Nom</span></td>
+            if ((Model.Id % 5) == 0)
+            {
+                @Html.Raw("</tr>");
+            @Html.Raw("<tr>");
+            }
+        }
+    </tr>
+</table>

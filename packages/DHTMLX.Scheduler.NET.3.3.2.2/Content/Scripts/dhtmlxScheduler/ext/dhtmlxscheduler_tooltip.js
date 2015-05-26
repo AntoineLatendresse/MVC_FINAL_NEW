@@ -1,0 +1,19 @@
+/*
+@license
+dhtmlxScheduler.Net v.3.3.2 
+
+This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
+
+(c) Dinamenta, UAB.
+*/
+Scheduler.plugin(function(e){!function(){var t=e.dhtmlXTooltip=e.tooltip={};t.config={className:"dhtmlXTooltip tooltip",timeout_to_display:50,timeout_to_hide:50,delta_x:15,delta_y:-20},t.tooltip=document.createElement("div"),t.tooltip.className=t.config.className,t.show=function(a,n){if(!e.config.touch||e.config.touch_tooltip){var i=t,r=this.tooltip,_=r.style;i.tooltip.className=i.config.className;var d=this.position(a),o=a.target||a.srcElement;if(!this.isTooltip(o)){var s=d.x+(i.config.delta_x||0),l=d.y-(i.config.delta_y||0);
+
+_.visibility="hidden",_.removeAttribute?(_.removeAttribute("right"),_.removeAttribute("bottom")):(_.removeProperty("right"),_.removeProperty("bottom")),_.left="0",_.top="0",this.tooltip.innerHTML=n,document.body.appendChild(this.tooltip);var c=this.tooltip.offsetWidth,h=this.tooltip.offsetHeight;document.body.offsetWidth-s-c<0?(_.removeAttribute?_.removeAttribute("left"):_.removeProperty("left"),_.right=document.body.offsetWidth-s+2*(i.config.delta_x||0)+"px"):_.left=0>s?d.x+Math.abs(i.config.delta_x||0)+"px":s+"px",
+document.body.offsetHeight-l-h<0?(_.removeAttribute?_.removeAttribute("top"):_.removeProperty("top"),_.bottom=document.body.offsetHeight-l-2*(i.config.delta_y||0)+"px"):_.top=0>l?d.y+Math.abs(i.config.delta_y||0)+"px":l+"px",_.visibility="visible",this.tooltip.onmouseleave=function(t){t=t||window.event;for(var a=e.dhtmlXTooltip,n=t.relatedTarget;n!=e._obj&&n;)n=n.parentNode;n!=e._obj&&a.delay(a.hide,a,[],a.config.timeout_to_hide)},e.callEvent("onTooltipDisplayed",[this.tooltip,this.tooltip.event_id]);
+
+}}},t._clearTimeout=function(){this.tooltip._timeout_id&&window.clearTimeout(this.tooltip._timeout_id)},t.hide=function(){if(this.tooltip.parentNode){var t=this.tooltip.event_id;this.tooltip.event_id=null,this.tooltip.onmouseleave=null,this.tooltip.parentNode.removeChild(this.tooltip),e.callEvent("onAfterTooltip",[t])}this._clearTimeout()},t.delay=function(e,t,a,n){this._clearTimeout(),this.tooltip._timeout_id=setTimeout(function(){var n=e.apply(t,a);return e=t=a=null,n},n||this.config.timeout_to_display);
+
+},t.isTooltip=function(e){var t=!1;for("dhtmlXTooltip"==e.className.split(" ")[0];e&&!t;)t=e.className==this.tooltip.className,e=e.parentNode;return t},t.position=function(e){if(e=e||window.event,e.pageX||e.pageY)return{x:e.pageX,y:e.pageY};var t=window._isIE&&"BackCompat"!=document.compatMode?document.documentElement:document.body;return{x:e.clientX+t.scrollLeft-t.clientLeft,y:e.clientY+t.scrollTop-t.clientTop}},e.attachEvent("onMouseMove",function(a,n){var i=window.event||n,r=i.target||i.srcElement,_=t,d=_.isTooltip(r),o=_.isTooltipTarget&&_.isTooltipTarget(r);
+
+if(a||d||o){var s;if(a||_.tooltip.event_id){var l=e.getEvent(a)||e.getEvent(_.tooltip.event_id);if(!l)return;if(_.tooltip.event_id=l.id,s=e.templates.tooltip_text(l.start_date,l.end_date,l),!s)return _.hide()}o&&(s="");var c;if(_isIE){c={pageX:void 0,pageY:void 0,clientX:void 0,clientY:void 0,target:void 0,srcElement:void 0};for(var h in c)c[h]=i[h]}if(!e.callEvent("onBeforeTooltip",[a])||!s)return;_.delay(_.show,_,[c||i,s])}else _.delay(_.hide,_,[],_.config.timeout_to_hide)}),e.attachEvent("onBeforeDrag",function(){
+return t.hide(),!0}),e.attachEvent("onEventDeleted",function(){return t.hide(),!0}),e.templates.tooltip_date_format=e.date.date_to_str("%Y-%m-%d %H:%i"),e.templates.tooltip_text=function(t,a,n){return"<b>Event:</b> "+n.text+"<br/><b>Start date:</b> "+e.templates.tooltip_date_format(t)+"<br/><b>End date:</b> "+e.templates.tooltip_date_format(a)}}()});

@@ -1,0 +1,17 @@
+/*
+@license
+dhtmlxScheduler.Net v.3.3.2 
+
+This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
+
+(c) Dinamenta, UAB.
+*/
+Scheduler.plugin(function(e){e.form_blocks.combo={render:function(e){e.cached_options||(e.cached_options={});var t="";return t+="<div class='"+e.type+"' style='height:"+(e.height||20)+"px;' ></div>"},set_value:function(t,n,a,i){!function(){function n(){if(t._combo&&t._combo.DOMParent){var e=t._combo;e.unload?e.unload():e.destructor&&e.destructor(),e.DOMParent=e.DOMelem=null}}n();var a=e.attachEvent("onAfterLightbox",function(){n(),e.detachEvent(a)})}(),window.dhx_globalImgPath=i.image_path||"/",t._combo=new dhtmlXCombo(t,i.name,t.offsetWidth-8),
+i.onchange&&t._combo.attachEvent("onChange",i.onchange),i.options_height&&t._combo.setOptionHeight(i.options_height);var d=t._combo;if(d.enableFilteringMode(i.filtering,i.script_path||null,!!i.cache),i.script_path){var r=a[i.map_to];r?i.cached_options[r]?(d.addOption(r,i.cached_options[r]),d.disable(1),d.selectOption(0),d.disable(0)):dhtmlxAjax.get(i.script_path+"?id="+r+"&uid="+e.uid(),function(e){var t=e.doXPath("//option")[0],n=t.childNodes[0].nodeValue;i.cached_options[r]=n,d.addOption(r,n),d.disable(1),
+d.selectOption(0),d.disable(0)}):d.setComboValue("")}else{for(var o=[],_=0;_<i.options.length;_++){var l=i.options[_],s=[l.key,l.label,l.css];o.push(s)}if(d.addOption(o),a[i.map_to]){var c=d.getIndexByValue(a[i.map_to]);d.selectOption(c)}}},get_value:function(e,t,n){var a=e._combo.getSelectedValue();return n.script_path&&(n.cached_options[a]=e._combo.getSelectedText()),a},focus:function(e){}},e.form_blocks.radio={render:function(t){var n="";n+="<div class='dhx_cal_ltext dhx_cal_radio' style='height:"+t.height+"px;' >";
+
+for(var a=0;a<t.options.length;a++){var i=e.uid();n+="<input id='"+i+"' type='radio' name='"+t.name+"' value='"+t.options[a].key+"'><label for='"+i+"'> "+t.options[a].label+"</label>",t.vertical&&(n+="<br/>")}return n+="</div>"},set_value:function(e,t,n,a){for(var i=e.getElementsByTagName("input"),d=0;d<i.length;d++){i[d].checked=!1;var r=n[a.map_to]||t;i[d].value==r&&(i[d].checked=!0)}},get_value:function(e,t,n){for(var a=e.getElementsByTagName("input"),i=0;i<a.length;i++)if(a[i].checked)return a[i].value;
+
+},focus:function(e){}},e.form_blocks.checkbox={render:function(t){return e.config.wide_form?'<div class="dhx_cal_wide_checkbox" '+(t.height?"style='height:"+t.height+"px;'":"")+"></div>":""},set_value:function(t,n,a,i){t=document.getElementById(i.id);var d=e.uid(),r="undefined"!=typeof i.checked_value?n==i.checked_value:!!n;t.className+=" dhx_cal_checkbox";var o="<input id='"+d+"' type='checkbox' value='true' name='"+i.name+"'"+(r?"checked='true'":"")+"'>",_="<label for='"+d+"'>"+(e.locale.labels["section_"+i.name]||i.name)+"</label>";
+
+if(e.config.wide_form?(t.innerHTML=_,t.nextSibling.innerHTML=o):t.innerHTML=o+_,i.handler){var l=t.getElementsByTagName("input")[0];l.onclick=i.handler}},get_value:function(e,t,n){e=document.getElementById(n.id);var a=e.getElementsByTagName("input")[0];return a||(a=e.nextSibling.getElementsByTagName("input")[0]),a.checked?n.checked_value||!0:n.unchecked_value||!1},focus:function(e){}}});

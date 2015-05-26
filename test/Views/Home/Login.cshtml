@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<style>
+    .radio_buttons tr:nth-child(odd) td {
+        background-color: #EEEEEE;
+    }
+
+    .radio_buttons tr:nth-child(even) td {
+        background-color: #DDDDDD;
+    }
+
+    tr td:first-child {
+        text-align: right;
+        vertical-align: top;
+    }
+
+    td {
+        padding: 5px;
+    }
+</style>
+<br />
+<br />
+<table>
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <td>Username: </td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Password: </td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td id="Button_3"
+                        style="border: 1px solid black; padding: 5px; background-color: black"
+                        onmouseout="ButtonAnimation_down('Button_3')">
+                        @Html.ActionLink("Login", "Login", "Users")
+                    </td>
+                    <td id="Button_4"
+                        style="border: 1px solid black; padding: 5px; background-color: black"
+                        onmouseout="ButtonAnimation_down('Button_4')">
+                        @Html.ActionLink("Mot de passe oublié", "Mot de passe oublié", "Users")
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
