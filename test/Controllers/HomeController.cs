@@ -23,6 +23,31 @@ namespace test.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Subscribe(string prenom,
+            string nom,
+            string telephone,
+            string codePostal,
+            DateTime dateNaissance,
+            int sexe,
+            int etatCivil,
+            string pathPicture)
+        {
+            Session["insertionValide"] = false;
+
+
+
+
+
+            if (Session["insertionValide"].Equals(true))
+            {
+                return Redirect("/Home/Index");
+            }
+
+
+            return View();
+        }
+
         public ActionResult List()
         {
             return View();

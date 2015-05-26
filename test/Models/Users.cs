@@ -5,24 +5,54 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 
-namespace test.Models
+namespace MVC_TP_FINAL.Models
 {
     public class Users : test.Class.SqlExpressWrapper
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
+
+        [Display(Name = "Adresse email")]
+        [Required(ErrorMessage = "L'adresse email est nécessaire à la création d'un compte.")]
+        [EmailAddress(ErrorMessage = "L'adresse email entrée n'est pas une adresse valide.")]
+        public string Email { get; set; }
+
+        [Display(Name = "Nom d'utilisateur")]
+        [Required(ErrorMessage = "Vous devez avoir un nom d'utilisateur.")]
+        [StringLength(20, MinimumLength = 2)]
+        public string UserName { get; set; }
+
+        [Display(Name = "Mot de passe")]
+        [Required(ErrorMessage = "Vous devez avoir mot de passe")]
+        [StringLength(30, MinimumLength = 8)]
+        public string Password { get; set; }
+
+        [Display(Name = "Prenom")]
         [Required(ErrorMessage = "Le prenom est obligatoire")]
+        [StringLength(20, MinimumLength = 2)]
         public string Prenom { get; set; }
+
+        [Display(Name = "Nom")]
         [Required(ErrorMessage = "Le nom est obligatoire")]
+        [StringLength(20, MinimumLength = 2)]
         public string Nom { get; set; }
+
+        [Display(Name = "Numéro de téléphone")]
+        [StringLength(20, MinimumLength = 2)]
         public string Telephone { get; set; }
-        [Display(Name = "Code Postal")]
-        public string CodePostal { get; set; }
+
+        [Display(Name = "Date de naissance")]
         [DataType(DataType.Date, ErrorMessage = "Pas une date valide")]
         public DateTime Naissance { get; set; }
+
+
         public int Sexe { get; set; }
+
         [Display(Name = "État Civil")]
         public int EtatCivil { get; set; }
+
+
         public string Picture { get; set; }
+
 
         public Users(Object connexionString)
             : base(connexionString)
@@ -36,11 +66,13 @@ namespace test.Models
         }
         public override void GetValues()
         {
-            Id = int.Parse(this["ID"]);
+            ID = int.Parse(this["ID"]);
+            Email = this["Email"];
+            UserName = this["UserName"];
+            Password = this["Password"];
             Prenom = this["Prenom"];
             Nom = this["Nom"];
             Telephone = this["Telephone"];
-            CodePostal = this["CodePostal"];
             Naissance = DateTime.Parse(this["Naissance"]);
             Sexe = int.Parse(this["Sexe"]);
             EtatCivil = int.Parse(this["EtatCivil"]);
@@ -64,11 +96,11 @@ namespace test.Models
 
         public override void Insert()
         {
-            InsertRecord(Prenom, Nom, Telephone, CodePostal, Naissance, Sexe, EtatCivil, Picture);
+            InsertRecord(Email, UserName, Password, Prenom, Nom, Telephone, Naissance, Sexe, EtatCivil, Picture);
         }
         public override void Update()
         {
-            UpdateRecord(Id, Prenom, Nom, Telephone, CodePostal, Naissance, Sexe, EtatCivil, Picture);
+            UpdateRecord(ID, Email, UserName, Password, Prenom, Nom, Telephone, Naissance, Sexe, EtatCivil, Picture);
         }
     }
 }
