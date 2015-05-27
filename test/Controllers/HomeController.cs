@@ -22,10 +22,37 @@ namespace test.Controllers
             return View(gal);
         }
 
+
+        public ActionResult Inscription()
+        {
+            return View(new Users());
+        }
+
+        [HttpPost]
+        public ActionResult Inscription(Users newMember)
+        {
+            Session["insertionValide"] = false;
+            
+            if(ModelState.IsValid)
+            {
+                newMember.Insert();
+            }
+
+
+            if (Session["insertionValide"].Equals(true))
+            {
+                return Redirect("/Home/Index");
+            }
+            return View(newMember);
+        }
+
+
         public ActionResult Subscribe()
         {
             return View();
         }
+
+
 
         [HttpPost]
         public ActionResult Subscribe(
@@ -41,6 +68,7 @@ namespace test.Controllers
         {
             Session["insertionValide"] = false;
 
+
             Users member = new Users();
             member.Email = Email;
             member.UserName = UserName;
@@ -50,8 +78,6 @@ namespace test.Controllers
             member.Naissance = DateTime.Parse(Naissance);
             member.Sexe = Sexe;
             member.EtatCivil = EtatCivil;
-
-
 
 
             if (Session["insertionValide"].Equals(true))
@@ -86,6 +112,7 @@ namespace test.Controllers
 
             return View(userName, password);
         }
+
 
         public ActionResult Modify()
         {
