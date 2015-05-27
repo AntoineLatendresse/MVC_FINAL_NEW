@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 
-using MVC_TP_FINAL.Models;
+using test.Models;
 // ?
 //using test.Models;
 
@@ -21,7 +21,9 @@ namespace test.Controllers
 
         public ActionResult Gallery()
         {
-            return View();
+            Gallery gal = new Gallery(Session["Gallery"]);
+            gal.SelectAll();
+            return View(gal);
         }
 
         public ActionResult Subscribe()
@@ -65,7 +67,9 @@ namespace test.Controllers
 
         public ActionResult List()
         {
-            return View();
+            Users users = new Users(Session["MainBD"]);
+            users.SelectAll();
+            return View(users);
         }
 
         public ActionResult Login()

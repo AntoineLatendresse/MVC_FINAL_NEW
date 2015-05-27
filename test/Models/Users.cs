@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 
-namespace MVC_TP_FINAL.Models
+namespace test.Models
 {
     public class Users : test.Class.SqlExpressWrapper
     {
