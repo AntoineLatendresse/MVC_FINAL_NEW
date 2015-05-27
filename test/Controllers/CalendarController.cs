@@ -72,7 +72,7 @@ namespace test.Controllers
                         changedEvent = data.Events.SingleOrDefault(ev => ev.Id == action.SourceId);
                         data.Events.DeleteOnSubmit(changedEvent);
                         break;
-                    default:// "update"                          
+                    case DataActionTypes.Update:
                         var eventToUpdate = data.Events.SingleOrDefault(ev => ev.Id == action.SourceId);
                         DHXEventsHelper.Update(eventToUpdate, changedEvent, new List<string>() { "id" });
                         break;
