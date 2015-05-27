@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
-
 using test.Models;
-// ?
-//using test.Models;
-
+using MVC_TP_FINAL.Models;
 
 namespace test.Controllers
 {
@@ -75,6 +71,20 @@ namespace test.Controllers
         public ActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(string userName, string password)
+        {
+            UsersLogin connection = new UsersLogin();
+            connection.UserName = userName;
+            connection.Password = password;
+            if(connection.Valider())
+            {
+                return Redirect("/Home/Index");
+            }
+
+            return View(userName, password);
         }
 
         public ActionResult Modify()
