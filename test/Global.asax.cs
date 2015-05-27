@@ -16,12 +16,6 @@ namespace test
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-
-            // pour pouvoir accéder à la propriété Application["MaindDB"]
-            string DB_Path = Server.MapPath(@"~\App_Data\MainDB.mdf");
-            Application["MainDB"] = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" 
-                + DB_Path + "';Integrated Security=True";
         }
     }
 }

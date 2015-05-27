@@ -9,46 +9,41 @@ namespace MVC_TP_FINAL.Models
 {
     public class Users : test.Class.SqlExpressWrapper
     {
+
+        public const string CONNECTION_STRING = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='~\App_Data\MainDB.mdf';Integrated Security=True";
+        public const string TABLE_NAME = "USERS";
+
+
         public int ID { get; set; }
 
-        //[Display(Name = "Adresse email")]
-        //[Required(ErrorMessage = "L'adresse email est nécessaire à la création d'un compte.")]
-        //[EmailAddress(ErrorMessage = "L'adresse email entrée n'est pas une adresse valide.")]
+        [Required(ErrorMessage = "L'adresse email est nécessaire à la création d'un compte.")]
+        [EmailAddress(ErrorMessage = "L'adresse email entrée n'est pas une adresse valide.")]
         public string Email { get; set; }
 
-        //[Display(Name = "Nom d'utilisateur")]
-        //[Required(ErrorMessage = "Vous devez avoir un nom d'utilisateur.")]
-        //[StringLength(20, MinimumLength = 2)]
+        [Required(ErrorMessage = "Vous devez avoir un nom d'utilisateur.")]
+        [StringLength(20, MinimumLength = 2)]
         public string UserName { get; set; }
 
-        //[Display(Name = "Mot de passe")]
-        //[Required(ErrorMessage = "Vous devez avoir mot de passe")]
-        //[StringLength(30, MinimumLength = 8)]
+        [Required(ErrorMessage = "Vous devez avoir mot de passe")]
+        [StringLength(30, MinimumLength = 8)]
         public string Password { get; set; }
 
-        //[Display(Name = "Prenom")]
-        //[Required(ErrorMessage = "Le prenom est obligatoire")]
-        //[StringLength(20, MinimumLength = 2)]
+        [Required(ErrorMessage = "Le prenom est obligatoire")]
+        [StringLength(20, MinimumLength = 2)]
         public string Prenom { get; set; }
 
-        //[Display(Name = "Nom")]
-        //[StringLength(20)]
+        [StringLength(20)]
         public string Nom { get; set; }
 
-        //[Display(Name = "Numéro de téléphone")]
-        //[StringLength(20, MinimumLength = 10)]
+        [StringLength(20)]
         public string Telephone { get; set; }
 
-        //[Display(Name = "Date de naissance")]
-        //[DataType(DataType.Date, ErrorMessage = "Pas une date valide")]
+        [DataType(DataType.Date, ErrorMessage = "Pas une date valide")]
         public DateTime Naissance { get; set; }
-
         
         public int Sexe { get; set; }
 
-        //[Display(Name = "État Civil")]
         public int EtatCivil { get; set; }
-
 
         public string Picture { get; set; }
 
@@ -56,12 +51,13 @@ namespace MVC_TP_FINAL.Models
         public Users(Object connexionString)
             : base(connexionString)
         {
-            SQLTableName = "USERS";
+            SQLTableName = TABLE_NAME;
         }
 
         public Users()
-            : base("")
+            : base(CONNECTION_STRING)
         {
+            SQLTableName = TABLE_NAME;
         }
         public override void GetValues()
         {

@@ -31,19 +31,30 @@ namespace test.Controllers
 
         [HttpPost]
         public ActionResult Subscribe(
-            string userName,
-            string prenom,
-            string nom,
-            string telephone,
-            string dateNaissance,
-            int sexe,
-            int civil,
-            string pathPicture)
+            string Email,
+            string UserName,
+            string Prenom,
+            string Nom = null,
+            string Telephone = null,
+            string Naissance = null,
+            int Sexe = -1,
+            int EtatCivil = -1,
+            string pathPicture = null)
         {
             Session["insertionValide"] = false;
 
-            Users member = new Users((String)Session["MainDB"]);
-            
+            Users member = new Users();
+            member.Email = Email;
+            member.UserName = UserName;
+            member.Prenom = Prenom;
+            member.Nom = Nom;
+            member.Telephone = Telephone;
+            member.Naissance = DateTime.Parse(Naissance);
+            member.Sexe = Sexe;
+            member.EtatCivil = EtatCivil;
+
+
+
 
             if (Session["insertionValide"].Equals(true))
             {
