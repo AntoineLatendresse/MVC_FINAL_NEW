@@ -40,10 +40,13 @@ namespace MVC_TP_FINAL.Models
 
         [DataType(DataType.Date, ErrorMessage = "Pas une date valide")]
         public DateTime Naissance { get; set; }
+
         
         public int Sexe { get; set; }
 
+        [Display(Name = "État Civil")]
         public int EtatCivil { get; set; }
+
 
         public string Picture { get; set; }
 
