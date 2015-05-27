@@ -9,8 +9,7 @@ namespace test.Models
 {
     public class Users : test.Class.SqlExpressWrapper
     {
-
-        public const string CONNECTION_STRING = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='~\App_Data\MainDB.mdf';Integrated Security=True";
+        public const string CONNECTION_STRING = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='|datadirectory|MainDB.mdf';Integrated Security=True;";
         public const string TABLE_NAME = "USERS";
 
 
@@ -112,12 +111,11 @@ namespace test.Models
             string SQL = "SELECT * FROM " + SQLTableName + " WHERE UserName  ='" + this.UserName + "'"
                 + " " + "AND Password ='" + this.Password + "'";
             QuerySQL(SQL);
-            EndQuerySQL();
             if (reader.HasRows)
             {
                 valide = true;
             }
-
+            EndQuerySQL();
             return valide;
         }
 
