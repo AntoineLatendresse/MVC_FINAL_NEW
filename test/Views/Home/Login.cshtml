@@ -24,32 +24,33 @@
 </style>
 <br />
 <br />
-<table>
-    <tr>
-        <td>
-            <table>
-                <tr>
-                    <td>Username: </td>
-                    <td><input type="text" /></td>
-                </tr>
-                <tr>
-                    <td>Password: </td>
-                    <td><input type="text" /></td>
-                </tr>
-                <tr>
-                    <td id="Button_3"
-                        style="border: 1px solid black; padding: 5px; background-color: black"
-                        onmouseout="ButtonAnimation_down('Button_3')">
-                        @Html.ActionLink("Login", "Login", "Users")
-                    </td>
-                    <td id="Button_4"
-                        style="border: 1px solid black; padding: 5px; background-color: black"
-                        onmouseout="ButtonAnimation_down('Button_4')">
-                        @Html.ActionLink("Mot de passe oublié", "Mot de passe oublié", "Users")
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
-
+<form method="post" action="">
+    <table>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>Username: </td>
+                        <td><input type="text" name="userName" /></td>
+                    </tr>
+                    <tr>
+                        <td>Password: </td>
+                        <td><input type="text" name="password" /></td>
+                    </tr>
+                    <tr>
+                        <td id="Button_3"
+                            style="border: 1px solid black; padding: 5px; background-color: black"
+                            onmouseout="ButtonAnimation_down('Button_3')">
+                            @Html.ActionLink("Login", "Login", "Home")
+                        </td>
+                        <td id="Button_4"
+                            style="border: 1px solid black; padding: 5px; background-color: black"
+                            onmouseout="ButtonAnimation_down('Button_4')">
+                            @Html.ActionLink("Mot de passe oublié", "Mot de passe oublié", "Users")
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</form>

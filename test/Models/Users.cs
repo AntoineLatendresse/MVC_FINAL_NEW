@@ -26,6 +26,7 @@ namespace test.Models
 
         [Required(ErrorMessage = "Vous devez avoir mot de passe")]
         [StringLength(30, MinimumLength = 8)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Le prenom est obligatoire")]
@@ -100,5 +101,25 @@ namespace test.Models
         {
             UpdateRecord(ID, Email, UserName, Password, Prenom, Nom, Telephone, Naissance, Sexe, EtatCivil, Picture);
         }
+
+
+
+
+
+        public bool ValiderConnexionUser()
+        {
+            bool valide = false;
+            string SQL = "SELECT * FROM " + SQLTableName + " WHERE UserName  ='" + this.UserName + "'"
+                + " " + "AND Password ='" + this.Password + "'";
+            QuerySQL(SQL);
+            EndQuerySQL();
+            if (reader.HasRows)
+            {
+                valide = true;
+            }
+
+            return valide;
+        }
+
     }
 }
