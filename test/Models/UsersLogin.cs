@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using test.Models;
 
-namespace MVC_TP_FINAL.Models
+namespace test.Models
 {
     public class UsersLogin
     {

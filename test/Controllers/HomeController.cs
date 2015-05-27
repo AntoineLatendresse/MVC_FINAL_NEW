@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using test.Models;
-using MVC_TP_FINAL.Models;
+
+
 
 namespace test.Controllers
 {
@@ -36,11 +37,11 @@ namespace test.Controllers
             if(ModelState.IsValid)
             {
                 newMember.Insert();
+                Session["insertionValide"] = true;
             }
-
-
             if (Session["insertionValide"].Equals(true))
             {
+                Session["insertionValide"] = null;
                 return Redirect("/Home/Index");
             }
             return View(newMember);
