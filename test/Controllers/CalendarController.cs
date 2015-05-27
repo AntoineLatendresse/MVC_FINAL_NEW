@@ -36,9 +36,9 @@ namespace test.Controllers
              * The default codebase folder is ~/Scripts/dhtmlxScheduler. It can be overriden:
              *      scheduler.Codebase = Url.Content("~/customCodebaseFolder");
              */
-            
- 
-            //scheduler.InitialDate = new DateTime(2015, 26, 05);
+
+
+            scheduler.Skin = DHXScheduler.Skins.Flat;
 
             scheduler.LoadData = true;
             scheduler.EnableDataprocessor = true;
