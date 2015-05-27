@@ -2,6 +2,7 @@
     ViewBag.Title = "Login";
 }
 
+
 <h2>Login</h2>
 
 <style>
@@ -24,20 +25,24 @@
 </style>
 <br />
 <br />
+@Html.ValidationSummary()
 <form method="post" action="">
     <table>
         <tr>
             <td>
                 <table>
                     <tr>
-                        <td>Username: </td>
+                        <td><Label for="userName"> Username: </Label></td>
                         <td><input type="text" name="userName" /></td>
+                        @Html.ValidationMessage("UsersLogin", "userName")
                     </tr>
                     <tr>
-                        <td>Password: </td>
+                        <td><label for="password"> Password: </label> </td>
                         <td><input type="text" name="password" /></td>
+                        @Html.ValidationMessage("UsersLogin", "password")
                     </tr>
                     <tr>
+                        <input type="submit" />
                         <td id="Button_3"
                             style="border: 1px solid black; padding: 5px; background-color: black"
                             onmouseout="ButtonAnimation_down('Button_3')">
