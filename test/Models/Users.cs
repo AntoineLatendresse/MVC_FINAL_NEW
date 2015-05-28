@@ -58,7 +58,7 @@ namespace test.Models
         }
 
         public Users()
-            : base(Class.VariablesGlobales.CONNECTION_STRING)
+            : base(Class.VariablesGlobales.CONNECTION_STRING_MAINDB)
         {
             SQLTableName = Class.VariablesGlobales.TABLE_USERS;
         }

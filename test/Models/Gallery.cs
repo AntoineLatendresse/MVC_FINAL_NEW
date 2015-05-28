@@ -8,7 +8,7 @@ namespace test.Models
     public class Gallery : test.Class.SqlExpressWrapper
     {
 
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Picture { get; set; }
 
         public Gallery(Object connexionString)
@@ -18,13 +18,14 @@ namespace test.Models
         }
 
         public Gallery()
-            : base("")
+            : base(Class.VariablesGlobales.CONNECTION_STRING_Gallery)
         {
+            SQLTableName = "Gallery";
         }
 
         public override void GetValues()
         {
-            Id = int.Parse(this["ID"]);
+            ID = int.Parse(this["ID"]);
             Picture = this["Picture"];
         }
 
@@ -45,11 +46,11 @@ namespace test.Models
 
         public override void Insert()
         {
-            InsertRecord(Id, Picture);
+            InsertRecord(ID, Picture);
         }
         public override void Update()
         {
-            UpdateRecord(Id, Picture);
+            UpdateRecord(ID, Picture);
         }
     }
 }

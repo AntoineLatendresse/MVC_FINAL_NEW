@@ -17,46 +17,29 @@ namespace test.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string userName, string password)
-        {
-            UsersLogin connection = new UsersLogin();
-            connection.UserName = userName;
-            connection.Password = password;
-            if (connection.Valider())
-            {
-                return Redirect("/Home/Index");
-            }
-
-            return View(userName, password);
-        }
-        [HttpPost]
-        public ActionResult Index(String UserName, String Password)
+        public ActionResult Index(UsersLogin loginUser)
         {
             Users users = new Users();
-
-            if (users.Exist(UserName))
+            if (loginUser.Valider())
             {
-                if (users.Password == Password)
-                {
-                    Session["UserValid"] = true;
-                    Session["UserId"] = users.ID;
-                    Session["Nom"] = users.Nom;
-                    Session["Prenom"] = users.Prenom;
-                    return RedirectToAction("Index", "Calendar");
-                }
-                else
-                {
-                    TempData["Notice"] = "Mot de passe incorrect...";
-                }
+                users.SelectByFieldName("UserName", loginUser.UserName);
+                Session["user"] = users;
+                Users test = Session["user"] as Users;
+                int i = test.ID;
+
+                Session["UserValid"] = true;
+                Session["UserId"] = users.ID;
+                Session["Nom"] = users.Nom;
+                Session["Prenom"] = users.Prenom;
+                Session["Picture"] = users.Picture;
+                return RedirectToAction("Index", "Calendar");
             }
-            else
-                TempData["Notice"] = "Cet usager n'existe pas...";
-            return View();
+            return View(loginUser);
         }
 
         public ActionResult Gallery()
         {
-            Gallery gal = new Gallery(Session["Gallery"]);
+            Gallery gal = new Gallery();
             gal.SelectAll();
             return View(gal);
         }
@@ -86,6 +69,32 @@ namespace test.Controllers
         }
 
 
+        public ActionResult List()
+        {
+            Users users = new Users();
+            users.SelectAll();
+            return View(users);
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(UsersLogin usersConnection)
+        {
+            
+            if(usersConnection.Valider())
+            {
+                return Redirect("/Home/List");
+            }
+
+            return View(usersConnection);
+        }
+
+
+
         public ActionResult Subscribe()
         {
             return View();
@@ -103,31 +112,6 @@ namespace test.Controllers
                 return Redirect("/Home/Index");
             }
             return View(member);
-        }
-
-        public ActionResult List()
-        {
-            Users users = new Users();
-            users.SelectAll();
-            return View(users);
-        }
-
-        public ActionResult Login()
-        {
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Login(UsersLogin usersConnection)
-        {
-            
-            if(usersConnection.Valider())
-            {
-                return Redirect("/Home/List");
-            }
-
-            return View(usersConnection);
         }
 
 
