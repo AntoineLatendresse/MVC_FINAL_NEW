@@ -38,7 +38,7 @@ namespace test.Models
             }
             else
             {
-                url = @"Images/" + Picture + ".jpg";
+                url = @"ImagesGallery/" + Picture + ".jpg";
             }
 
             return url;

@@ -4,11 +4,8 @@
 }
 
 <style>
-    td {
-        padding: 10px;
-        text-align: center;
-    }
 
+    
     span {
         border-radius: 25px;
         border: 2px solid black;
@@ -26,6 +23,7 @@
         width: 200px;
         height: 200px;
     }
+
 </style>
 
 <h2>Lister</h2>
@@ -41,13 +39,13 @@
     }
 </script>
 
-<table>
+<table id="listeUser" class="CSSTableGenerator">
     <tr>
         @while (Model.Next())
         {
-            <td><img alt=@Model.ID src=@Model.GetAvatarURL() onmousedown="BorderDown(this)" onmouseup="BorderUp(this)" />
-            <br />
-            <span>@Model.Prenom @Model.Nom</span>
+            <td>
+                @Model.UserName
+                lvl 50
             </td>
             if ((Model.ID % 5) == 0)
             {
