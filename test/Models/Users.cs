@@ -71,7 +71,7 @@ namespace test.Models
             Prenom = this["Prenom"];
             Nom = this["Nom"];
             Sexe = int.Parse(this["Sexe"]);
-            Picture = this["Picture"];
+            Picture = GetAvatarURL();
         }
 
         public String GetAvatarURL()

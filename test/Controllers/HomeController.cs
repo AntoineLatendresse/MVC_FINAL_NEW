@@ -112,19 +112,23 @@ namespace test.Controllers
             return View(users);
         }
 
-        /*[HttpPost]
-        public ActionResult Login(string userName, string password)
+        public ActionResult Login()
         {
-            UsersLogin connection = new UsersLogin();
-            connection.UserName = userName;
-            connection.Password = password;
-            if(connection.Valider())
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(UsersLogin usersConnection)
+        {
+            
+            if(usersConnection.Valider())
             {
-                return Redirect("/Home/Index");
+                return Redirect("/Home/List");
             }
 
-            return View(userName, password);
-        }*/
+            return View(usersConnection);
+        }
 
 
         public ActionResult Modify()

@@ -80,7 +80,7 @@ namespace test.Class
 
                 for (int f = 0; f < reader.FieldCount; f++)
                 {
-                    if (reader.GetName(f) == "Id")
+                    if (reader.GetName(f) == "ID")
                         FieldsNames.Add("ID");
                     else
                         FieldsNames.Add(reader.GetName(f));
