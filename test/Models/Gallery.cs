@@ -18,7 +18,7 @@ namespace test.Models
         }
 
         public Gallery()
-            : base(Class.VariablesGlobales.CONNECTION_STRING_Gallery)
+            : base(Class.VariablesGlobales.CONNECTION_STRING_MAINDB)
         {
             SQLTableName = "Gallery";
         }
@@ -34,11 +34,11 @@ namespace test.Models
             String url;
             if (String.IsNullOrEmpty(Picture))
             {
-                url = @"ImagesGallery/anonymous.jpg";
+                url = @"/ImagesGallery/anonymous.jpg";
             }
             else
             {
-                url = @"ImagesGallery/" + Picture + ".jpg";
+                url = @"/ImagesGallery/" + Picture;
             }
 
             return url;

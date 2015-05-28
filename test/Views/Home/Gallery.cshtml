@@ -45,7 +45,7 @@
     <tr>
         @while (Model.Next())
         {
-            <td><img src=@Model.Picture onmousedown="BorderDown(this)" onmouseup="BorderUp(this)" /><br /></td>
+            <td><img src=@Model.GetGalleryURL() onmousedown="BorderDown(this)" onmouseup="BorderUp(this)" /><br /></td>
             if ((Model.ID % 5) == 0)
             {
                 @Html.Raw("</tr>");

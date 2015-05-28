@@ -79,11 +79,11 @@ namespace test.Models
             String url;
             if (String.IsNullOrEmpty(Picture))
             {
-                url = @"Images/anonymous.jpg";
+                url = @"/Images/anonymous.jpg";
             }
             else
             {
-                url = @"Images/" + Picture;
+                url = @"/Images/" + Picture;
             }
 
             return url;
