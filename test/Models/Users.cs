@@ -43,12 +43,8 @@ namespace test.Models
         [StringLength(20)]
         public string Nom { get; set; }
 
-        [Display(Name = "Sexe")]
-        public int Sexe { get; set; }
-
-
-        [Display(Name = "Avatar")]
-        public string Picture { get; set; }
+        [Display(Name = "Rang")]
+        public int Rank { get; set; }
 
 
         public Users(Object connexionString)
@@ -70,32 +66,18 @@ namespace test.Models
             Password = this["Password"];
             Prenom = this["Prenom"];
             Nom = this["Nom"];
-            Sexe = int.Parse(this["Sexe"]);
-            Picture = GetAvatarURL();
+            Rank = int.Parse(this["Rank"]);
+            
         }
 
-        public String GetAvatarURL()
-        {
-            String url;
-            if (String.IsNullOrEmpty(Picture))
-            {
-                url = @"/Images/anonymous.jpg";
-            }
-            else
-            {
-                url = @"/Images/" + Picture;
-            }
-
-            return url;
-        }
 
         public override void Insert()
         {
-            InsertRecord(Email, UserName, Password, Prenom, Nom, Sexe, Picture);
+           InsertRecord(Email, UserName, Password, Prenom, Nom, Rank);
         }
         public override void Update()
         {
-            UpdateRecord(ID, Email, UserName, Password, Prenom, Nom, Sexe, Picture);
+            UpdateRecord(ID, Email, UserName, Password, Prenom, Nom, Rank);
         }
 
         public bool Exist(String userName)

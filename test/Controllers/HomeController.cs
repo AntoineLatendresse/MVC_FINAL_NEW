@@ -31,7 +31,7 @@ namespace test.Controllers
                 Session["UserId"] = users.ID;
                 Session["Nom"] = users.Nom;
                 Session["Prenom"] = users.Prenom;
-                Session["Picture"] = users.Picture;
+                Session["Rank"] = users.Rank;
                 return RedirectToAction("Index", "Calendar");
             }
             return View(loginUser);
@@ -47,18 +47,25 @@ namespace test.Controllers
 
         public ActionResult Inscription()
         {
-            return View(new Users());
+            return View(new UsersInscription());
         }
 
         [HttpPost]
-        public ActionResult Inscription(Users newMember)
+        public ActionResult Inscription(UsersInscription newMember)
         {
             Session["insertionValide"] = false;
             
             if(ModelState.IsValid)
             {
-                newMember.Insert();
-                Session["insertionValide"] = true;
+               Users user = new Users();
+               user.UserName = newMember.UserName;
+               user.Password = newMember.Password;
+               user.Email = newMember.Email;
+               user.Prenom = newMember.Prenom;
+               user.Nom = newMember.Nom;
+               user.Rank = 5;
+               user.Insert();
+               Session["insertionValide"] = true;
             }
             if (Session["insertionValide"].Equals(true))
             {

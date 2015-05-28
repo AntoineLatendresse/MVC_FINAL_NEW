@@ -26,18 +26,37 @@
 
 </style>
 
+
+
+
 <h2>Lister</h2>
 
 <script type="text/javascript">
-    function BorderDown(img) {
-        img.style.width = "150px";
-        img.style.height = "170px";
+    var timer;
+    function ChargeVuePartielle() {
+        $.ajax({
+            url: '@Url.Action("PartielMarche")',
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#contributors').html(result);
+            }
+        });
     }
-    function BorderUp(img) {
-        img.style.width = "170px";
-        img.style.height = "190px";
-    }
+    $
+    ChargeVuePartielle();
+    $(function () {
+        timer = window.setInterval("ChargeVuePartielle()", 3000);
+    });
+
+
+
 </script>
+
+<div name="abc">
+    @DateTime.Now
+</div>
+
 
 <table id="listeUser" class="CSSTableGenerator">
     <tr>
@@ -45,7 +64,8 @@
         {
             <td>
                 @Model.UserName
-                lvl 50
+                <br />
+                @Model.Rank
             </td>
             if ((Model.ID % 5) == 0)
             {
