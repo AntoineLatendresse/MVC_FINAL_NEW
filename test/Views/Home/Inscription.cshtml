@@ -57,22 +57,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Telephone, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Telephone)
-                @Html.ValidationMessageFor(model => model.Telephone)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Naissance, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Naissance)
-                @Html.ValidationMessageFor(model => model.Naissance)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Sexe, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 Masculin
@@ -84,27 +68,6 @@
                 @Html.ValidationMessageFor(model => model.Sexe)
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EtatCivil, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                Célibataire
-                @Html.RadioButtonFor(model => model.EtatCivil, 0)
-                Marié
-                @Html.RadioButtonFor(model => model.EtatCivil, 1)
-                Conjoint de fait
-                @Html.RadioButtonFor(model => model.EtatCivil, 2)
-                Séparé
-                @Html.RadioButtonFor(model => model.EtatCivil, 3)
-                Séparé
-                @Html.RadioButtonFor(model => model.EtatCivil, 4)
-                Veuf
-                @Html.ValidationMessageFor(model => model.EtatCivil)
-            </div>
-        </div>
-
-        
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.Picture, new { @class = "control-label col-md-2" })

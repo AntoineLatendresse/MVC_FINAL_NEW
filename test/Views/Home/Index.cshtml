@@ -1,4 +1,5 @@
-﻿@{
+﻿@model test.Models.UsersLogin
+@{
     ViewBag.Title = "Login";
 }
 
@@ -32,13 +33,13 @@
             <td>
                 <table>
                     <tr>
-                        <td><label for="userName"> Username: </label></td>
-                        <td><input type="text" name="userName" /></td>
+                        <td><label for="UserName"> Username: </label></td>
+                        <td><input type="text" name="UserName" /></td>
                         @Html.ValidationMessage("UsersLogin", "userName")
                     </tr>
                     <tr>
-                        <td><label for="password"> Password: </label> </td>
-                        <td><input type="text" name="password" /></td>
+                        <td><label for="Password"> Password: </label> </td>
+                        <td><input type="text" name="Password" /></td>
                         @Html.ValidationMessage("UsersLogin", "password")
                     </tr>
                     <tr>

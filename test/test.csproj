@@ -119,6 +119,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Class\SqlExpressUtilities.cs" />
+    <Compile Include="Class\VariablesGlobales.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -132,6 +133,7 @@
     </Compile>
     <Compile Include="Models\SchedulerModel.cs" />
     <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\UsersLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +383,7 @@
     <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Home\Modify.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
+    <Content Include="Views\Home\Inscription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Models\Sample.dbml.layout">

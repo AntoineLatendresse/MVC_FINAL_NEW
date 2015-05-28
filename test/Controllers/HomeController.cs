@@ -17,9 +17,23 @@ namespace test.Controllers
             return View();
         }
         [HttpPost]
+        public ActionResult Login(string userName, string password)
+        {
+            UsersLogin connection = new UsersLogin();
+            connection.UserName = userName;
+            connection.Password = password;
+            if (connection.Valider())
+            {
+                return Redirect("/Home/Index");
+            }
+
+            return View(userName, password);
+        }
+        [HttpPost]
         public ActionResult Index(String UserName, String Password)
         {
-            Users users = new Users(Session["MainDB"]);
+            Users users = new Users();
+
             if (users.Exist(UserName))
             {
                 if (users.Password == Password)
@@ -80,39 +94,20 @@ namespace test.Controllers
 
 
         [HttpPost]
-        public ActionResult Subscribe(
-            string Email,
-            string UserName,
-            string Prenom,
-            string Nom = null,
-            string Telephone = null,
-            string Naissance = null,
-            int Sexe = -1,
-            string pathPicture = null)
+        public ActionResult Subscribe(Users member)
         {
             Session["insertionValide"] = false;
-
-
-            Users member = new Users();
-            member.Email = Email;
-            member.UserName = UserName;
-            member.Prenom = Prenom;
-            member.Nom = Nom;
-            member.Telephone = Telephone;
-            member.Naissance = DateTime.Parse(Naissance);
-            member.Sexe = Sexe;
-
 
             if (Session["insertionValide"].Equals(true))
             {
                 return Redirect("/Home/Index");
             }
-            return View();
+            return View(member);
         }
 
         public ActionResult List()
         {
-            Users users = new Users(Session["MainBD"]);
+            Users users = new Users();
             users.SelectAll();
             return View(users);
         }

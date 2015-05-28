@@ -7,10 +7,11 @@ using System.Web;
 
 namespace test.Models
 {
+
+
     public class Users : test.Class.SqlExpressWrapper
     {
-        public const string CONNECTION_STRING = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='|datadirectory|MainDB.mdf';Integrated Security=True;";
-        public const string TABLE_NAME = "USERS";
+        
 
 
         public int ID { get; set; }
@@ -42,32 +43,24 @@ namespace test.Models
         [StringLength(20)]
         public string Nom { get; set; }
 
-        [Display(Name = "Numéro de téléphone")]
-        [StringLength(20)]
-        public string Telephone { get; set; }
-
-        [Display(Name = "Date de naissance")]
-        [DataType(DataType.Date, ErrorMessage = "Pas une date valide")]
-        public DateTime Naissance { get; set; }
-
         [Display(Name = "Sexe")]
         public int Sexe { get; set; }
 
+
         [Display(Name = "Avatar")]
-        
         public string Picture { get; set; }
 
 
         public Users(Object connexionString)
             : base(connexionString)
         {
-            SQLTableName = TABLE_NAME;
+            SQLTableName = Class.VariablesGlobales.TABLE_USERS;
         }
 
         public Users()
-            : base(CONNECTION_STRING)
+            : base(Class.VariablesGlobales.CONNECTION_STRING)
         {
-            SQLTableName = TABLE_NAME;
+            SQLTableName = Class.VariablesGlobales.TABLE_USERS;
         }
         public override void GetValues()
         {
@@ -77,8 +70,6 @@ namespace test.Models
             Password = this["Password"];
             Prenom = this["Prenom"];
             Nom = this["Nom"];
-            Telephone = this["Telephone"];
-            Naissance = DateTime.Parse(this["Naissance"]);
             Sexe = int.Parse(this["Sexe"]);
             Picture = this["Picture"];
         }
@@ -100,11 +91,11 @@ namespace test.Models
 
         public override void Insert()
         {
-            InsertRecord(Email, UserName, Password, Prenom, Nom, Telephone, Naissance, Sexe, Picture);
+            InsertRecord(Email, UserName, Password, Prenom, Nom, Sexe, Picture);
         }
         public override void Update()
         {
-            UpdateRecord(ID, Email, UserName, Password, Prenom, Nom, Telephone, Naissance, Sexe, Picture);
+            UpdateRecord(ID, Email, UserName, Password, Prenom, Nom, Sexe, Picture);
         }
 
         public bool Exist(String userName)
