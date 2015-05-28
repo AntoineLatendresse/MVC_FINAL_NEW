@@ -53,10 +53,6 @@ namespace test.Models
         [Display(Name = "Sexe")]
         public int Sexe { get; set; }
 
-
-        [Display(Name = "État Civil")]
-        public int EtatCivil { get; set; }
-
         [Display(Name = "Avatar")]
         
         public string Picture { get; set; }
@@ -84,7 +80,6 @@ namespace test.Models
             Telephone = this["Telephone"];
             Naissance = DateTime.Parse(this["Naissance"]);
             Sexe = int.Parse(this["Sexe"]);
-            EtatCivil = int.Parse(this["EtatCivil"]);
             Picture = this["Picture"];
         }
 
@@ -105,16 +100,27 @@ namespace test.Models
 
         public override void Insert()
         {
-            InsertRecord(Email, UserName, Password, Prenom, Nom, Telephone, Naissance, Sexe, EtatCivil, Picture);
+            InsertRecord(Email, UserName, Password, Prenom, Nom, Telephone, Naissance, Sexe, Picture);
         }
         public override void Update()
         {
-            UpdateRecord(ID, Email, UserName, Password, Prenom, Nom, Telephone, Naissance, Sexe, EtatCivil, Picture);
+            UpdateRecord(ID, Email, UserName, Password, Prenom, Nom, Telephone, Naissance, Sexe, Picture);
         }
 
+        public bool Exist(String userName)
+        {
+            bool exist = false;
 
+            SelectByFieldName("USERNAME", userName);
 
-
+            if (reader.HasRows)
+            {
+                Next();
+                exist = true;
+                EndQuerySQL();
+            }
+            return exist;
+        }
 
         public bool ValiderConnexionUser()
         {

@@ -11,8 +11,32 @@ namespace test.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Index(String UserName, String Password)
+        {
+            Users users = new Users(Session["MainDB"]);
+            if (users.Exist(UserName))
+            {
+                if (users.Password == Password)
+                {
+                    Session["UserValid"] = true;
+                    Session["UserId"] = users.ID;
+                    Session["Nom"] = users.Nom;
+                    Session["Prenom"] = users.Prenom;
+                    return RedirectToAction("Index", "Calendar");
+                }
+                else
+                {
+                    TempData["Notice"] = "Mot de passe incorrect...";
+                }
+            }
+            else
+                TempData["Notice"] = "Cet usager n'existe pas...";
             return View();
         }
 
@@ -64,7 +88,6 @@ namespace test.Controllers
             string Telephone = null,
             string Naissance = null,
             int Sexe = -1,
-            int EtatCivil = -1,
             string pathPicture = null)
         {
             Session["insertionValide"] = false;
@@ -78,7 +101,6 @@ namespace test.Controllers
             member.Telephone = Telephone;
             member.Naissance = DateTime.Parse(Naissance);
             member.Sexe = Sexe;
-            member.EtatCivil = EtatCivil;
 
 
             if (Session["insertionValide"].Equals(true))
@@ -95,12 +117,7 @@ namespace test.Controllers
             return View(users);
         }
 
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult Login(string userName, string password)
         {
             UsersLogin connection = new UsersLogin();
@@ -112,7 +129,7 @@ namespace test.Controllers
             }
 
             return View(userName, password);
-        }
+        }*/
 
 
         public ActionResult Modify()
