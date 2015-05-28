@@ -1,0 +1,31 @@
+﻿@model test.Models.Users
+
+
+@{
+    ViewBag.Title = "PartialList";
+}
+<div name="abc">
+    @DateTime.Now
+</div>
+<table id="listeMembres" class="CSSTableGenerator">
+    <tr>
+        <td>
+            Liste des membres
+        </td>
+        <td>
+            Rang
+        </td>
+    </tr>
+    @while (Model.Next())
+    {
+        <tr>
+            <td>
+                @Model.UserName
+
+            </td>
+            <td>
+                @Model.GetRank()
+            </td>
+        </tr>
+    }
+</table>

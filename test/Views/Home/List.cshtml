@@ -26,16 +26,17 @@
 
 </style>
 
-
-
-
 <h2>Lister</h2>
+
+
+@Html.Partial("PartialList",Model);
+
 
 <script type="text/javascript">
     var timer;
-    function ChargeVuePartielle() {
+    function LoadPartialList() {
         $.ajax({
-            url: '@Url.Action("PartielMarche")',
+            url: '@Url.Action("PartialList", new { id=ViewBag.page})',
             type: 'GET',
             dataType: 'html',
             success: function (result) {
@@ -46,34 +47,6 @@
     $
     ChargeVuePartielle();
     $(function () {
-        timer = window.setInterval("ChargeVuePartielle()", 3000);
+        timer = window.setInterval("LoadPartialList()", 3000);
     });
-
-
-
 </script>
-
-<div name="abc">
-    @DateTime.Now
-</div>
-
-
-<table id="listeUser" class="CSSTableGenerator">
-    <tr>
-        @while (Model.Next())
-        {
-            <td>
-                @Model.UserName
-                
-            </td>
-            <td>
-                @Model.GetRank()
-            </td>
-            if ((Model.ID % 5) == 0)
-            {
-                @Html.Raw("</tr>");
-            @Html.Raw("<tr>");
-            }
-        }
-    </tr>
-</table>
