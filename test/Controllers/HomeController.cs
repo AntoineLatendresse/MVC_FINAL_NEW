@@ -24,6 +24,12 @@ namespace test.Controllers
             return View(gal);
         }
 
+        public ActionResult Deconnexion()
+        {
+           Session["UserValid"] = false;
+           return RedirectToAction("Login", "Home");
+        }
+
 
         public ActionResult Inscription()
         {

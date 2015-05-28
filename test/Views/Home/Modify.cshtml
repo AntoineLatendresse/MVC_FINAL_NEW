@@ -1,7 +1,7 @@
 ﻿@model test.Models.Users
 
 @{
-    ViewBag.Title = "Modify";
+    ViewBag.Title = "Modifier";
 }
 
 <h2>Modify</h2>
@@ -13,7 +13,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Users</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.ID)
