@@ -16,23 +16,6 @@ namespace test.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Index(UsersLogin loginUser)
-        {
-            Users users = new Users();
-            if (loginUser.Valider())
-            {
-                users.SelectByFieldName("UserName", loginUser.UserName);
-
-                Session["UserValid"] = true;
-                Session["UserId"] = users.ID;
-                Session["Nom"] = users.Nom;
-                Session["Prenom"] = users.Prenom;
-                Session["Rank"] = users.Rank;
-                return RedirectToAction("Modify", "Home");
-            }
-            return View(loginUser);
-        }
 
         public ActionResult Gallery()
         {
@@ -103,27 +86,6 @@ namespace test.Controllers
            return View(loginUser);
         }
 
-
-
-        public ActionResult Subscribe()
-        {
-            return View();
-        }
-
-
-
-        [HttpPost]
-        public ActionResult Subscribe(Users member)
-        {
-            Session["insertionValide"] = false;
-
-            if (Session["insertionValide"].Equals(true))
-            {
-                return Redirect("/Home/Index");
-            }
-            return View(member);
-        }
-
         [HttpGet]
         public ActionResult Modify()
         {
@@ -159,6 +121,18 @@ namespace test.Controllers
            }
            return View(users);
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
         public ActionResult About()
         {

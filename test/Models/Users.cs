@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Web;
@@ -107,6 +108,32 @@ namespace test.Models
             }
             EndQuerySQL();
             return valide;
+        }
+
+
+        public string GetRank()
+        {
+           string rank = "";
+           string SQL_Select = "SELECT GuildRank.Rank FROM " + SQLTableName
+              + " " + "INNER JOIN GuildRank ON GuildRank.ID = " + SQLTableName + ".Rank"
+              + " " + " WHERE " + SQLTableName + ".UserName  ='" + this.UserName + "'";
+
+           // instancier l'objet de collection
+           SqlConnection connection = new SqlConnection(connexionString);
+           // bâtir l'objet de requête
+           SqlCommand sqlcmd = new SqlCommand(SQL_Select);
+           // affecter l'objet de connection à l'objet de requête
+           sqlcmd.Connection = connection;
+           // ouvrir la connection avec la bd
+           connection.Open();
+           // éxécuter la requête SQL et récupérer les enregistrements qui en découlent dans l'objet Reader
+           SqlDataReader dataReader = sqlcmd.ExecuteReader();
+
+           while (dataReader.Read())
+           {
+              rank = dataReader.GetString(0);
+           }
+           return rank;
         }
 
     }
