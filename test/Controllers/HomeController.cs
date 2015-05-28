@@ -103,7 +103,7 @@ namespace test.Controllers
               users.EndQuerySQL();
               return View(users);
            }
-           return View();
+           return Redirect("/Home/Login");
         }
 
         [HttpPost]
