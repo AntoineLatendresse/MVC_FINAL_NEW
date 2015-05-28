@@ -374,14 +374,10 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
     <Content Include="Views\Home\List.cshtml" />
-    <Content Include="Views\Home\Modify.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
     <Content Include="Views\Home\Inscription.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Models\Sample.dbml.layout">
-      <DependentUpon>Sample.dbml</DependentUpon>
-    </None>
+    <Content Include="Views\Home\Modify.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -389,6 +385,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\Sample.dbml.layout">
+      <DependentUpon>Sample.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

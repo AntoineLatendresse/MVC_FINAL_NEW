@@ -69,16 +69,16 @@ namespace test.Controllers
                         data.Events.InsertOnSubmit(changedEvent);
                         break;
                     case DataActionTypes.Delete:
-                        changedEvent = data.Events.SingleOrDefault(ev => ev.Id == action.SourceId);
+                        changedEvent = data.Events.SingleOrDefault(ev => ev.ID == action.SourceId);
                         data.Events.DeleteOnSubmit(changedEvent);
                         break;
                     case DataActionTypes.Update:
-                        var eventToUpdate = data.Events.SingleOrDefault(ev => ev.Id == action.SourceId);
-                        DHXEventsHelper.Update(eventToUpdate, changedEvent, new List<string>() { "id" });
+                        var eventToUpdate = data.Events.SingleOrDefault(ev => ev.ID == action.SourceId);
+                        DHXEventsHelper.Update(eventToUpdate, changedEvent, new List<string>() { "ID" });
                         break;
                 }
                 data.SubmitChanges();
-                action.TargetId = changedEvent.Id;
+                action.TargetId = changedEvent.ID;
             }
             catch
             {

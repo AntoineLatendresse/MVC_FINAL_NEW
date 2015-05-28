@@ -23,16 +23,13 @@ namespace test.Controllers
             if (loginUser.Valider())
             {
                 users.SelectByFieldName("UserName", loginUser.UserName);
-                Session["user"] = users;
-                Users test = Session["user"] as Users;
-                int i = test.ID;
 
                 Session["UserValid"] = true;
                 Session["UserId"] = users.ID;
                 Session["Nom"] = users.Nom;
                 Session["Prenom"] = users.Prenom;
                 Session["Rank"] = users.Rank;
-                return RedirectToAction("Index", "Calendar");
+                return RedirectToAction("Modify", "Home");
             }
             return View(loginUser);
         }
@@ -70,7 +67,7 @@ namespace test.Controllers
             if (Session["insertionValide"].Equals(true))
             {
                 Session["insertionValide"] = null;
-                return Redirect("/Home/Index");
+                return Redirect("/Home/Modify");
             }
             return View(newMember);
         }
@@ -89,15 +86,21 @@ namespace test.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UsersLogin usersConnection)
+        public ActionResult Login(UsersLogin loginUser)
         {
-            
-            if(usersConnection.Valider())
-            {
-                return Redirect("/Home/List");
-            }
+           Users users = new Users();
+           if (loginUser.Valider())
+           {
+              users.SelectByFieldName("UserName", loginUser.UserName);
 
-            return View(usersConnection);
+              Session["UserValid"] = true;
+              Session["UserId"] = users.ID;
+              Session["Nom"] = users.Nom;
+              Session["Prenom"] = users.Prenom;
+              Session["Rank"] = users.Rank;
+              return RedirectToAction("Modify", "Home");
+           }
+           return View(loginUser);
         }
 
 
@@ -121,10 +124,40 @@ namespace test.Controllers
             return View(member);
         }
 
-
+        [HttpGet]
         public ActionResult Modify()
         {
-            return View();
+           if ((bool)Session["UserValid"])
+           {
+              Users users = new Users();
+              users.SelectByID(Session["UserId"].ToString());
+              users.Next();
+              users.EndQuerySQL();
+              return View(users);
+           }
+           return View();
+        }
+
+        [HttpPost]
+        public ActionResult Modify(Users users)
+        {
+           if (ModelState.IsValid)
+           {
+              Users updatedUser = new Users();
+              updatedUser.SelectByID(Session["UserId"].ToString());
+              updatedUser.EndQuerySQL();
+
+              updatedUser.UserName = users.UserName;
+              updatedUser.Nom = users.Nom;
+              updatedUser.Prenom = users.Prenom;
+              updatedUser.Password = users.Password;
+              updatedUser.Email = users.Email;
+
+              updatedUser.Update();
+              Session["Name"] = updatedUser.Nom;
+              return RedirectToAction("Index", "Home");
+           }
+           return View(users);
         }
 
         public ActionResult About()
